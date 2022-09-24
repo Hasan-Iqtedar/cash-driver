@@ -68,10 +68,6 @@
     background-color: var(--secondaryColor);
 }
 
-.table tr:nth-child(even) {
-    color: var(--primaryColor);
-}
-
 .table .dropdown {
     width: auto;
     height: auto;
@@ -83,7 +79,7 @@
 
 @media (min-width: 950px) {
     .table table {
-        width: 90%;
+        width: 100%;
         /* width: 850px; */
         margin-top: 10px;
         margin-bottom: 50px;
