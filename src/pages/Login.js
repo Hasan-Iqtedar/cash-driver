@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
 import { FaEnvelope } from "react-icons/fa";
 import { GoEllipsis } from "react-icons/go";
-import { IoIosEyeOff } from "react-icons/io";
+import { IoIosEyeOff, IoIosEye } from "react-icons/io";
 import InputField from "../components/InputField";
 import Logo from "../components/Logo";
 import "../styles/login.css";
@@ -17,6 +17,7 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const updateEmail = (e) => setEmail(e.target.value);
   const updatePassword = (e) => setPassword(e.target.value);
@@ -50,15 +51,16 @@ const Login = (props) => {
           />
           <InputField
             icon={GoEllipsis}
-            icon2={IoIosEyeOff}
+            icon2={showPassword ? IoIosEye : IoIosEyeOff}
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
             changeHandler={updatePassword}
             fieldStyle={{ width: "70%" }}
+            icon2Handler={() => setShowPassword(!showPassword)}
           />
-          <span className="forgot-password">Forget Pasword?</span>
+          {/* <span className="forgot-password">Forget Pasword?</span> */}
         </div>
         {err ? <p className="error">Invalid Credentials!</p> : ""}
 

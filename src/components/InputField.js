@@ -14,7 +14,11 @@ const InputField = (props) => {
         style={props.fieldStyle}
       ></input>
       {props.icon2 ? (
-        <props.icon2 className="icon" style={props.icon2style} />
+        <props.icon2
+          className="icon"
+          style={props.icon2style}
+          onClick={props.icon2Handler}
+        />
       ) : (
         ""
       )}
