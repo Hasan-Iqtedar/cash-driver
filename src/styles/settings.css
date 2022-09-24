@@ -45,9 +45,8 @@
     font-size: 18px;
 }
 
-.settings-fields-container input {
+.settings-fields-container div {
     background-color: transparent;
-    border: none;
     height: 50px;
     color: gray;
     width: 90%;
@@ -79,4 +78,41 @@
 
 .settings .update-btn:hover {
     background-color: lightgray;
+}
+
+.settings .model-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+.settings .model-content .model-input {
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid var(--secondaryColor);
+    /* color: gray;  */
+    background-color: transparent;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.settings .model-content .model-input:focus-visible {
+    outline: 1px solid var(--secondaryColor);
+}
+
+.settings .model-content button {
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 15px;
+    background-color: var(--primaryColor);
+}
+
+.settings .model-content button:hover {
+    background-color: rgb(190, 190, 190);
 }
