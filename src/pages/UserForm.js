@@ -50,6 +50,7 @@ const UserForm = (props) => {
         age: "",
         profilePic: "",
         dateJoined: new Date().toDateString().slice(4),
+        totalTrackedDistance: 0,
       };
       try {
         if (state) {
