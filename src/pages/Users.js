@@ -41,6 +41,7 @@ const Users = (props) => {
             <th>Profile Name</th>
             <th>Email</th>
             <th>Date Joined</th>
+            <th>Total Tracked Distance</th>
           </tr>
           {users.map((user) => {
             return (
@@ -62,6 +63,7 @@ const Users = (props) => {
                 </td>
                 <td>{user.data.email}</td>
                 <td>{user.data.dateJoined ? user.data.dateJoined : "None"}</td>
+                <td> {user.data.totalTrackedDistance ? user.data.totalTrackedDistance : 0} </td>
                 <td>
                   <div className="dropdown details">
                     <HiDotsHorizontal />
