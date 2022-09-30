@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../contexts/globalState";
 import { HiDotsHorizontal } from "react-icons/hi";
@@ -13,10 +12,6 @@ import TableHeader from "../components/TableHeader";
 const Users = (props) => {
   const { users, deleteUser } = useGlobalState();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(users);
-  }, []);
 
   const updateUser = (user) => {
     navigate("/edit-user", { state: { user: user } });
@@ -50,6 +45,9 @@ const Users = (props) => {
                   <div
                     className="name"
                     style={{ justifyContent: "flex-start" }}
+                    onClick={() => {
+                      navigate("/user-profile", { state: { user: user } });
+                    }}
                   >
                     <ProfilePicture
                       imgStyle={{
@@ -63,7 +61,12 @@ const Users = (props) => {
                 </td>
                 <td>{user.data.email}</td>
                 <td>{user.data.dateJoined ? user.data.dateJoined : "None"}</td>
-                <td> {user.data.totalTrackedDistance ? user.data.totalTrackedDistance : 0} </td>
+                <td>
+                  {" "}
+                  {user.data.totalTrackedDistance
+                    ? user.data.totalTrackedDistance
+                    : 0}{" "}
+                </td>
                 <td>
                   <div className="dropdown details">
                     <HiDotsHorizontal />

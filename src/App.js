@@ -7,6 +7,7 @@ import UserForm from "./pages/UserForm";
 import Users from "./pages/Users";
 import Dashboard from "./pages/Dashboard";
 import "./styles/app.css";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/add-user" element={<UserForm />} />
           <Route path="/edit-user" element={<UserForm />} />
+          <Route path="/user-profile" element={<UserProfile />} />
         </Routes>
       </Container>
     </div>
