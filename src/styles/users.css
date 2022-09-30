@@ -66,3 +66,7 @@
 .users .table td, th {
     width: 100px;
 } */
+
+.users .table .name:hover {
+    cursor: pointer;
+}
