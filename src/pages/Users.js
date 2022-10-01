@@ -86,7 +86,7 @@ const Users = (props) => {
                 </td>
                 <td>{user.data.email}</td>
                 <td>{user.data.dateJoined ? user.data.dateJoined : "None"}</td>
-                <td>{distance} KM</td>
+                <td>{distance.toFixed(2)} KM</td>
                 <td>
                   <div className="dropdown details">
                     <HiDotsHorizontal />
