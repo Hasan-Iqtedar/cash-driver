@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
 import { FaCarSide } from "react-icons/fa";
 import Card from "../components/Card";
@@ -8,14 +5,6 @@ import "../styles/userProfile.css";
 
 const UserProfile = (props) => {
   const { state } = useLocation();
-  const [rides, setRides] = useState([]);
-
-  useEffect(() => {
-    getDocs(collection(db, "users", state.user.id, "rides")).then((res) => {
-      const data = res.docs.map((doc) => ({ data: doc.data(), id: doc.id }));
-      setRides(data);
-    });
-  }, []);
 
   return (
     <div className="user-profile">
@@ -27,7 +16,7 @@ const UserProfile = (props) => {
       </div>
       <h2>Activity</h2>
       <div className="center-container">
-        {rides.map((ride) => {
+        {state.user.rides.map((ride) => {
           return (
             <Card style={style.activityCard} key={ride.id}>
               <FaCarSide className="icon" />

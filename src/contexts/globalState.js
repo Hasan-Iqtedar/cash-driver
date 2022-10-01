@@ -18,9 +18,28 @@ export const GlobalProvider = (props) => {
       console.log("Loading...");
       const data = await getDocs(collection(db, "users"));
       const adminData = await getDocs(collection(db, "admin"));
+
+      const users = data.docs.map((doc) => {
+        return {
+          data: doc.data(),
+          id: doc.id,
+        };
+      });
+
+      for (let user in users) {
+        const data = await getDocs(
+          collection(db, "users", users[user].id, "rides")
+        );
+        const rides = data.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        users[user].rides = rides;
+      }
+      console.log(users[0]);
       dispatch({
         type: "INITIALIZE",
-        data: data,
+        data: users,
         adminData: adminData,
       });
     };

@@ -1,15 +1,11 @@
 const usersReducer = (state, action) => {
   switch (action.type) {
     case "INITIALIZE": {
-      const users = action.data.docs.map((doc) => ({
-        data: doc.data(),
-        id: doc.id,
-      }));
       const admin = action.adminData.docs[0].data();
       console.log("Loaded");
       return {
         ...state,
-        users: users,
+        users: action.data,
         adminCredentials: {
           password: admin.password,
           adminWalletKey: admin.walletKey,

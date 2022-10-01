@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../contexts/globalState";
 import { HiDotsHorizontal } from "react-icons/hi";
@@ -11,10 +12,23 @@ import TableHeader from "../components/TableHeader";
 
 const Users = (props) => {
   const { users, deleteUser } = useGlobalState();
+  const [inputValue, setInputValue] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState(users);
   const navigate = useNavigate();
 
   const updateUser = (user) => {
     navigate("/edit-user", { state: { user: user } });
+  };
+
+  const filterUsers = (name) => {
+    if (name !== "") {
+      const filtered = filteredUsers.filter((item) =>
+        item.data.name.toLowerCase().includes(name.trim().toLowerCase())
+      );
+      setFilteredUsers(filtered);
+    } else {
+      setFilteredUsers(users);
+    }
   };
 
   return (
@@ -22,7 +36,14 @@ const Users = (props) => {
       <TableHeader title="Users" />
       <div className="search-bar">
         <IoSearchOutline className="icon" />
-        <input placeholder="Search user by name or email..." />
+        <input
+          placeholder="Search user by name or email..."
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            filterUsers(e.target.value);
+          }}
+        />
       </div>
 
       <div className="table">
@@ -38,7 +59,11 @@ const Users = (props) => {
             <th>Date Joined</th>
             <th>Total Tracked Distance</th>
           </tr>
-          {users.map((user) => {
+          {filteredUsers.map((user) => {
+            let distance = 0;
+            user.rides.forEach((ride) => {
+              distance += Number(ride.data.distance);
+            });
             return (
               <tr key={user.id}>
                 <td>
@@ -61,12 +86,7 @@ const Users = (props) => {
                 </td>
                 <td>{user.data.email}</td>
                 <td>{user.data.dateJoined ? user.data.dateJoined : "None"}</td>
-                <td>
-                  {" "}
-                  {user.data.totalTrackedDistance
-                    ? user.data.totalTrackedDistance
-                    : 0}{" "}
-                </td>
+                <td>{distance} KM</td>
                 <td>
                   <div className="dropdown details">
                     <HiDotsHorizontal />
