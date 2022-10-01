@@ -22,7 +22,7 @@ const Users = (props) => {
 
   const filterUsers = (name) => {
     if (name !== "") {
-      const filtered = filteredUsers.filter((item) =>
+      const filtered = users.filter((item) =>
         item.data.name.toLowerCase().includes(name.trim().toLowerCase())
       );
       setFilteredUsers(filtered);
